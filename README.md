@@ -9,7 +9,7 @@ O código HTML, CSS e Javascript encontra-se na pasta `www` desse projeto e est�
 
 
 ## Como Iniciar o projeto e testar em um android
-- Instale o cordova e as dependencias para fazer build para um android seguindo até o passo 9 desse tutorial [https://pt.slideshare.net/secret/bDXK41qUfpg9V2](https://pt.slideshare.net/secret/bDXK41qUfpg9V2)
+- Instale o cordova e as dependencias para fazer build para um android seguindo até o passo 9 desse tutorial [https://fernandofreitasalves.com/guia-rapido-para-instalar-e-rodar-o-phonegap-no-windows/](https://fernandofreitasalves.com/guia-rapido-para-instalar-e-rodar-o-phonegap-no-windows/)
 - Instale o cordova com o comando: `npm install -g cordova`
 - Faça o download do repositório ou clone usando o git
 - Abra um terminal ou cmd na pasta do projeto baixado ou clonado
@@ -22,9 +22,9 @@ O código HTML, CSS e Javascript encontra-se na pasta `www` desse projeto e est�
 - Execute o comando `cordova run android`, caso você queira executa-lo em um emulador android que já esteja aberto basta usar o comando `cordova run android --emulator`
 
 
-Caso tenha ficado curioso e queira aprender mais sobre cordova e desenvolvimento mobile hibrido, existem vários artigos e tutoriais que podem te ajudar, abaixo listo alguns deles:
-- Curso completo de Phonegap/Cordova da Loiane Groner no youtube
+## Caso tenha ficado curioso e queira aprender mais sobre cordova e desenvolvimento mobile hibrido, existem vários artigos e tutoriais que podem te ajudar, abaixo listo alguns deles:
+- Curso completo de Phonegap/Cordova da Loiane Groner no youtube: 
 [https://www.youtube.com/playlist?list=PLGxZ4Rq3BOBrsK_yegY0fViqXKyNhUlxP](https://www.youtube.com/playlist?list=PLGxZ4Rq3BOBrsK_yegY0fViqXKyNhUlxP)
-- Dê uma lida ness artigo sobre ionic do Luis Vasconcellos[https://medium.com/@lfv89/nessa-s%C3%A9rie-divida-em-3-partes-vou-falar-um-pouco-mais-a-fundo-sobre-desenvolvimento-h%C3%ADbrido-914f22453c83](https://medium.com/@lfv89/nessa-s%C3%A9rie-divida-em-3-partes-vou-falar-um-pouco-mais-a-fundo-sobre-desenvolvimento-h%C3%ADbrido-914f22453c83)
+- Dê uma lida ness artigo sobre ionic do Luis Vasconcellos: [https://medium.com/@lfv89/nessa-s%C3%A9rie-divida-em-3-partes-vou-falar-um-pouco-mais-a-fundo-sobre-desenvolvimento-h%C3%ADbrido-914f22453c83](https://medium.com/@lfv89/nessa-s%C3%A9rie-divida-em-3-partes-vou-falar-um-pouco-mais-a-fundo-sobre-desenvolvimento-h%C3%ADbrido-914f22453c83)
 - Leia a documentação do Cordova, tem vários exemplos e explicações (em inglês):
 [https://cordova.apache.org/docs/en/latest/](https://cordova.apache.org/docs/en/latest/)
