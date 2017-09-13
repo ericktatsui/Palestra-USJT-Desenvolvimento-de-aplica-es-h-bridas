@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+
+        <!-- Meta tag para definir regras na politica de segurança, é importante para a aplicação cordova -->
+        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval' * ws:;style-src 'self' 'unsafe-inline' data: blob:;media-src *;img-src 'self' data: content: *;script-src * 'unsafe-inline' 'unsafe-eval' data: blob:;">
+
+        <title>Hello World</title>
+
+        <!-- Declaração do script do cordova, deve ir antes de todos scripts que usarão a API cordova -->
+        <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+
+        <style>
+            body {
+                background: #ccc;
+            }
+
+            #btn {
+                margin: 75px auto;
+                padding: 15px 20px;
+                display: block;
+                -webkit-appearance: none;
+                border-radius: 4px;
+            }
+
+            #canvas {
+                display: block;
+                margin: auto;
+                width: 300px;
+                height: 300px;
+                background: #FFF;
+            }
+        </style>
+    </head>
+    <body>
+        <button id="btn">Take a picture</button>
+        <img id="img">
+
+        <!-- Onde ficará os valores dos eixos atualizados pela API de movimento do cordova -->
+        <p>
+            <strong>Axis X:</strong> <span id="axis-x"></span>
+            <br>
+            <strong>Axis Y:</strong> <span id="axis-y"></span>
+            <br>
+            <strong>Axis Z:</strong> <span id="axis-z"></span>
+        </p>
+        
+        <!-- Uma lista vazia -->
+        <ul id="contacts">
+        </ul>
+        
+        <script>
+            // Seleciona os elementos e os guarda em variáveis
+            var btn = document.querySelector('#btn');
+            var img = document.querySelector('#img');
+            var contactList = document.querySelector('#contacts');
+            
+            // Cria um objeto com os elementos de onde ficarão os valores dos eixos
+            var axis = {
+                x: document.querySelector('#axis-x'),
+                y: document.querySelector('#axis-y'),
+                z: document.querySelector('#axis-z')
+            };
+
+            // Função pai para iniciar os métodos
+            var deviceReady = function(){
+                this.takePic();
+                this.getAccelerometer();
+                this.getContacts();
+            };
+
+            // Método que coloca ação no botão e tira a foto
+            deviceReady.prototype.takePic = function(){
+                btn.addEventListener('click', function(){
+                    // Api do Cordova para tirar fotos, tem como paramêtro uma função que recebe o caminho da foto que foi tirada
+                    navigator.camera.getPicture(function(path){
+                        // Seta o caminho da foto na tag img para mostrar
+                        img.src = path;
+                    });
+                });
+            };
+
+            // Método para pegar os movimentos do dispositivo e mostrar os valores
+            deviceReady.prototype.getAccelerometer = function(){
+                // Api de movimentação do Cordova, tem como parametro uma função que recebe os eixos da movimentação
+                navigator.accelerometer.watchAcceleration(function(axes){
+                    // Seta os eixos
+                    axis.x.innerHTML = axes.x;
+                    axis.y.innerHTML = axes.y;
+                    axis.z.innerHTML = axes.z;
+                }, function(){
+                    // Caso dê algum erro apenas faz um log no console do javascript
+                    console.log('error');
+                }, {
+                    'frequency': 300 // Define a frequencia que será buscado os valores dos eixos da movimentação
+                });
+            };
+
+            // Método para buscar os contatos e listar
+            deviceReady.prototype.getContacts = function(){
+                // API Cordova para buscar os contatos
+                navigator.contacts.find(['displayName'], function(contacts){
+                    var list = [];
+
+                    // Cria uma lista de contatos com a tag li do HTML
+                    for(var key in contacts){
+                        list.push('<li>' + contacts[key].displayName + ' - ' + contacts[key].phoneNumbers + '</li>');
+                    }
+
+                    // Insere toda a lista criada de uma vez na tag ul que estava vazia
+                    contactList.innerHTML = list.join('');
+                });
+            };
+
+            // Evento do Cordova que indica que o dispositivo está carregado e pronto para executar as APIs.
+            document.addEventListener('deviceready', function(){
+                // Invoca a função pai que contém todos os métodos, camera, movimentação e contatos.
+                new deviceReady();
+            }, false);
+        </script>
+    </body>
+</html>
